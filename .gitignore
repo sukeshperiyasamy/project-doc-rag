@@ -1,0 +1,35 @@
+# Secrets
+.env
+config/.env
+*.env
+
+# Python
+.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+
+# LightRAG generated data
+rag_storage/
+rag_storage_backup*/
+logs/
+
+# Local inputs / research corpus
+inputs/
+mtp/
+
+# Local embedding/model caches
+models/
+cache/
+*.bin
+*.safetensors
+
+# IDE / OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Temporary files
+*.tmp
+*.log

@@ -1,0 +1,92 @@
+entity_types_guidance: |
+  Classify each entity using one of the following research-oriented types. If no type fits, use `Other`.
+
+  - Project: Research grants, theses, overall studies, or project identifiers
+  - Experiment: Specific experimental trials, sessions, runs, or test series (e.g. Experiment X, Session 2)
+  - Biomarker: Biological molecules, targets, or disease markers (e.g. NAM, LPS, LTA, bilirubin)
+  - Chemical: Reagents, solvents, solutions, ligands, salts (e.g. boronic acid, ethanol, PBS)
+  - Material: Nanoparticles, colloidal solutions, metals (e.g. silver nanoparticles, gold nanostars)
+  - Substrate: Solid substrates, fabrication platforms, surfaces (e.g. Black Silicon, etched silicon, glass slide)
+  - Instrument: Laboratory hardware, spectrometers, detectors, microscopes (e.g. Raman spectrometer, SEM)
+  - Instrument_Parameter: Operating parameters, settings (e.g. laser wavelength 785 nm, 532 nm, integration time 10s, laser power 10 mW)
+  - Spectral_Peak: Raman peaks, bands, wavenumbers, vibrational modes (e.g. 930 cm-1, 1580 cm-1, D band, G band)
+  - Concentration: Numerical concentrations and dilutions (e.g. 0.1 mg/mL, 1 uM, 10 mM)
+  - Measurement: Quantitative or qualitative readings, intensities, SERS enhancement factors, signal-to-noise ratios
+  - Result: Findings, outcomes, detection statuses (e.g. Detected, Not Detected, limit of detection)
+  - Observation: Physical or spectroscopic observations, spectral changes, behavior over time
+  - Hypothesis: Scientific conjectures, models, expected mechanisms
+  - Problem_Cause: Failure modes, spectral interference, fouling, degradation, background noise, aggregation
+  - Method_Protocol: Synthesis protocols, fabrication methods, SERS measurement SOPs, functionalization procedures
+  - Author_Paper: Cited papers, researchers, literature references, external study findings
+  - Date: Dates or milestones associated with experimental execution
+
+entity_extraction_examples:
+  - |
+    entity{tuple_delimiter}NAM{tuple_delimiter}Biomarker{tuple_delimiter}Nicotinamide biomarker evaluated for SERS detection in sepsis diagnostics
+    entity{tuple_delimiter}785 nm{tuple_delimiter}Instrument_Parameter{tuple_delimiter}Excitation laser wavelength used in Raman spectroscopic measurements
+    entity{tuple_delimiter}930 cm-1{tuple_delimiter}Spectral_Peak{tuple_delimiter}Characteristic Raman peak observed during spectral acquisition
+    entity{tuple_delimiter}0.1 mg/mL{tuple_delimiter}Concentration{tuple_delimiter}Concentration of NAM solution prepared for SERS evaluation
+    entity{tuple_delimiter}Black Silicon{tuple_delimiter}Substrate{tuple_delimiter}Nanostructured substrate utilized for SERS enhancement
+    relation{tuple_delimiter}NAM{tuple_delimiter}785 nm{tuple_delimiter}laser excitation, Raman measurement{tuple_delimiter}NAM samples were analyzed using a 785 nm excitation laser
+    relation{tuple_delimiter}NAM{tuple_delimiter}930 cm-1{tuple_delimiter}Raman peak, spectral band{tuple_delimiter}A characteristic 930 cm-1 peak was evaluated for NAM identification
+    relation{tuple_delimiter}NAM{tuple_delimiter}0.1 mg/mL{tuple_delimiter}concentration, stock dilution{tuple_delimiter}NAM was tested at a concentration of 0.1 mg/mL
+    relation{tuple_delimiter}NAM{tuple_delimiter}Black Silicon{tuple_delimiter}substrate, SERS platform{tuple_delimiter}NAM detection experiments were conducted on Black Silicon substrates
+    {completion_delimiter}
+
+entity_extraction_json_examples:
+  - |
+    {
+      "entities": [
+        {
+          "name": "NAM",
+          "type": "Biomarker",
+          "description": "Nicotinamide biomarker evaluated for SERS detection in sepsis diagnostics"
+        },
+        {
+          "name": "785 nm",
+          "type": "Instrument_Parameter",
+          "description": "Excitation laser wavelength used in Raman spectroscopic measurements"
+        },
+        {
+          "name": "930 cm-1",
+          "type": "Spectral_Peak",
+          "description": "Characteristic Raman peak observed during spectral acquisition"
+        },
+        {
+          "name": "0.1 mg/mL",
+          "type": "Concentration",
+          "description": "Concentration of NAM solution prepared for SERS evaluation"
+        },
+        {
+          "name": "Black Silicon",
+          "type": "Substrate",
+          "description": "Nanostructured substrate utilized for SERS enhancement"
+        }
+      ],
+      "relationships": [
+        {
+          "source": "NAM",
+          "target": "785 nm",
+          "keywords": "laser excitation, Raman measurement",
+          "description": "NAM samples were analyzed using a 785 nm excitation laser"
+        },
+        {
+          "source": "NAM",
+          "target": "930 cm-1",
+          "keywords": "Raman peak, spectral band",
+          "description": "A characteristic 930 cm-1 peak was evaluated for NAM identification"
+        },
+        {
+          "source": "NAM",
+          "target": "0.1 mg/mL",
+          "keywords": "concentration, stock dilution",
+          "description": "NAM was tested at a concentration of 0.1 mg/mL"
+        },
+        {
+          "source": "NAM",
+          "target": "Black Silicon",
+          "keywords": "substrate, SERS platform",
+          "description": "NAM detection experiments were conducted on Black Silicon substrates"
+        }
+      ]
+    }
