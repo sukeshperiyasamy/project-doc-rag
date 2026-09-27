@@ -1,7 +1,8 @@
 # Secrets
 .env
-config/.env
-*.env
+.env*
+config/.env*
+*.env*
 
 # Python
 .venv/
